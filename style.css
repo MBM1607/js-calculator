@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: hsl(202, 96%, 30%);
+}
+
+#calculator {
+	border: 5px solid hsl(250, 96%, 10%);
+	background-color: hsl(250, 96%, 10%);
+	color: antiquewhite;
+	width: 40ch;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#display {
+	text-align: right;
+	background-color: hsl(250, 7%, 35%);
+	border: 2px solid hsl(250, 96%, 10%);
+	font-size: 1.625rem;
+	line-height: 1.625rem;
+	font-family: 'VT323', monospace;
+	padding: 1.5rem 0.325rem;
+}
+
+.btn-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+	padding: 1.5rem;
+	background-color: hsl(229, 96%, 95%);
+	color: hsl(250, 96%, 10%);
+	font-size: 1.625rem;
+	line-height: 1.625rem;
+	font-family: 'VT323', monospace;
+	border: 2px solid hsl(250, 96%, 10%);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#clear {
+	background-color: hsl(14, 96%, 30%);
+	color: hsl(229, 96%, 95%);
+	grid-column: span 2;
+}
+
+#equals {
+	background-color: hsl(229, 96%, 30%);;
+		color: hsl(229, 96%, 95%);
+	grid-row: 4;
+	grid-row-end: 6;
+	grid-column: 4;
+}
+
+#zero {
+	grid-column: span 2;
+}
+
+.btn:hover {
+	border-color: white;
+}
