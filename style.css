@@ -20,25 +20,24 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-#display {
+#display, #formula-screen {
 	text-align: right;
 	background-color: hsl(250, 7%, 35%);
 	border: 2px solid hsl(250, 96%, 10%);
 	font-size: 1.625rem;
 	line-height: 1.625rem;
 	font-family: 'VT323', monospace;
-	padding: 1.5rem 0.325rem;
+	padding: 0.325rem;
+	height: 1.625rem;
 }
 
-.btn-container {
+.calc-btn-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 }
 
 .btn {
 	padding: 1.5rem;
-	background-color: hsl(229, 96%, 95%);
-	color: hsl(250, 96%, 10%);
 	font-size: 1.625rem;
 	line-height: 1.625rem;
 	font-family: 'VT323', monospace;
@@ -49,23 +48,25 @@ body {
 	justify-content: center;
 }
 
-#clear {
+.numeric-btn {
+	background-color: hsl(229, 96%, 95%);
+	color: hsl(250, 96%, 10%);
+}
+
+.calc-btn {
+	background-color: hsl(229, 96%, 30%);;
+	color: hsl(229, 96%, 95%);
+}
+
+.control-btn {
 	background-color: hsl(14, 96%, 30%);
 	color: hsl(229, 96%, 95%);
+}
+
+#clear, #equals {
 	grid-column: span 2;
 }
 
-#equals {
-	background-color: hsl(229, 96%, 30%);;
-		color: hsl(229, 96%, 95%);
-	grid-row: 4;
-	grid-row-end: 6;
-	grid-column: 4;
-}
-
-#zero {
-	grid-column: span 2;
-}
 
 .btn:hover {
 	border-color: white;
