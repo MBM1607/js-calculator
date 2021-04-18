@@ -34,40 +34,24 @@ function takeKeyInput(key) {
 		handleNumericKeys(key, display, formulaScreen);
 	}
 	else if (key === '.') {
-		if (!display.textContent.includes('.')) {
-			if (formulaScreen.textContent === '') {
-				formulaScreen.textContent = '0';
-			}
-			display.textContent += '.';
-			formulaScreen.textContent += '.';
-		}
+		handleDecimalKey(display, formulaScreen);
 	}
 	else if (key === 'Escape') {
-		display.textContent = '0';
-		formulaScreen.textContent = '';
+		clearDisplay(display, formulaScreen);
 	}
 	else if (key === 'Backspace') {
-		if (display.textContent.length === 1) {
-			display.textContent = '0';
-			formulaScreen.textContent = '';
-		}
-		else {
-			display.textContent = display.textContent.slice(0, display.textContent.length - 1)
-			formulaScreen.textContent = formulaScreen.textContent.slice(0, formulaScreen.textContent.length - 1)
-		}
+		removeKey(display, formulaScreen);
 	}
 	else if (OPERATORS.includes(key)) {
-		handleOperatorKeys(key, display, formulaScreen)
+		handleOperatorKeys(key, display, formulaScreen);
 	}
 	else if (key === '=' || key === 'Enter') {
-		formulaScreen.setAttribute('data-calculated', true);
-		const result = eval(formulaScreen.textContent)
-		formulaScreen.textContent += '=' + result;
-		display.textContent = result;
+		calculate(display, formulaScreen);
 	}
 }
 
 function handleNumericKeys(num, display, formulaScreen) {
+
 	if (formulaScreen.getAttribute('data-calculated') === 'true'
 		|| display.textContent === '0') {
 		formulaScreen.setAttribute('data-calculated', false);
@@ -81,6 +65,16 @@ function handleNumericKeys(num, display, formulaScreen) {
 	else {
 		formulaScreen.textContent += num;
 		display.textContent += num;
+	}
+}
+
+function handleDecimalKey(display, formulaScreen) {
+	if (!display.textContent.includes('.')) {
+		if (formulaScreen.textContent === '') {
+			formulaScreen.textContent = '0';
+		}
+		display.textContent += '.';
+		formulaScreen.textContent += '.';
 	}
 }
 
@@ -107,4 +101,26 @@ function handleOperatorKeys(key, display, formulaScreen) {
 
 	formulaScreen.textContent += key;
 	display.textContent = key;
+}
+
+function calculate(display, formulaScreen) {
+	formulaScreen.setAttribute('data-calculated', true);
+	const result = eval(formulaScreen.textContent)
+	formulaScreen.textContent += '=' + result;
+	display.textContent = result;
+}
+
+function removeKey(display, formulaScreen) {
+	if (display.textContent.length <= 1) {
+		clearDisplay(display, formulaScreen)
+	}
+	else {
+		display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+		formulaScreen.textContent = formulaScreen.textContent.slice(0, formulaScreen.textContent.length - 1);
+	}
+}
+
+function clearDisplay(display, formulaScreen) {
+	display.textContent = '0';
+	formulaScreen.textContent = '';
 }
