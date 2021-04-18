@@ -20,7 +20,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-#display, #formula-screen {
+.display-screen {
 	text-align: right;
 	background-color: hsl(250, 7%, 35%);
 	border: 2px solid hsl(250, 96%, 10%);
@@ -29,6 +29,20 @@ body {
 	font-family: 'VT323', monospace;
 	padding: 0.325rem;
 	height: 1.625rem;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: hsl(14, 96%, 30%) hsl(202, 96%, 30%);
+}
+
+.display-screen::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: hsl(202, 96%, 30%);
+}
+
+.display-screen::-webkit-scrollbar-thumb {
+	background-color: hsl(14, 96%, 30%);
 }
 
 .calc-btn-container {
@@ -46,6 +60,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	box-shadow: inset 0 0 5px hsl(250, 96%, 10%);
 }
 
 .numeric-btn {
