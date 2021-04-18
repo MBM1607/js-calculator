@@ -5,49 +5,20 @@ const OVERWRITABLE_OPERATORS = ['*', '/', '+'];
 
 document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('keydown', (e) => {
-		takeKeyInput(e.key);
+		document.querySelector(`kbd[data-key="${e.key}"]`)?.click();
 	});
 
-	document.querySelectorAll('.calc-btn').forEach((btn) => {
+	document.querySelectorAll('.btn').forEach(btn => {
 		btn.addEventListener('click', () => {
-			if (btn.id === 'multiply') {
-				takeKeyInput('*');
+			if (!btn.classList.contains('pressed')) {
+				btn.classList.add('pressed');
+				setTimeout(() => {
+					btn.classList.remove('pressed');
+				}, 200);
 			}
-			else if (btn.id === 'divide') {
-				takeKeyInput('/')
-			}
-			else if (btn.id === 'subtract') {
-				takeKeyInput('-')
-			}
-			else if (btn.id === 'add') {
-				takeKeyInput('+')
-			}
-			else if (btn.id === 'equals') {
-				takeKeyInput('=')
-			}
+			takeKeyInput(btn.getAttribute('data-key'));
 		});
-	});
 
-	document.querySelectorAll('.control-btn').forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (btn.id === 'clear') {
-				takeKeyInput('Escape');
-			}
-			else if (btn.id === 'cancel') {
-				takeKeyInput('Backspace');
-			}
-		});
-	});
-
-	document.querySelectorAll('.numeric-btn').forEach((btn) => {
-		btn.addEventListener('click', () => {
-			if (btn.id === 'decimal') {
-				takeKeyInput('.');
-			}
-			else {
-				takeKeyInput(btn.getAttribute('data-value'));
-			}
-		});
 	});
 })
 
@@ -88,7 +59,7 @@ function takeKeyInput(key) {
 	else if (OPERATORS.includes(key)) {
 		handleOperatorKeys(key, display, formulaScreen)
 	}
-	else if (key === '=') {
+	else if (key === '=' || key === 'Enter') {
 		formulaScreen.setAttribute('data-calculated', true);
 		const result = eval(formulaScreen.textContent)
 		formulaScreen.textContent += '=' + result;

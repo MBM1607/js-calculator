@@ -60,22 +60,29 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	box-shadow: inset 0 0 5px hsl(250, 96%, 10%);
+	transition: transform 0.3s ease;
+}
+
+.btn.pressed {
+	transform: scale(1.1);
 }
 
 .numeric-btn {
-	background-color: hsl(229, 96%, 95%);
+	background-color: hsl(229, 96%, 90%);
 	color: hsl(250, 96%, 10%);
+	box-shadow: inset 0 0 5px hsl(229, 96%, 100%);
 }
 
 .calc-btn {
-	background-color: hsl(229, 96%, 30%);;
+	background-color: hsl(229, 96%, 30%);
 	color: hsl(229, 96%, 95%);
+	box-shadow: inset 0 0 5px hsl(229, 96%, 45%);
 }
 
 .control-btn {
 	background-color: hsl(14, 96%, 30%);
 	color: hsl(229, 96%, 95%);
+	box-shadow: inset 0 0 5px hsl(14, 96%, 45%);
 }
 
 #clear, #equals {
