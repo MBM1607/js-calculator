@@ -43,7 +43,7 @@ footer {
 #calculator {
 	border: 5px solid hsl(250, 96%, 10%);
 	background-color: hsl(250, 96%, 10%);
-	color: antiquewhite;
+	color: hsl(229, 96%, 95%);
 	width: 320px;
 }
 
@@ -118,5 +118,5 @@ footer {
 
 
 .btn:hover {
-	border-color: white;
+	border-color: hsl(229, 96%, 95%);
 }
