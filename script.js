@@ -105,9 +105,14 @@ function handleOperatorKeys(key, display, formulaScreen) {
 
 function calculate(display, formulaScreen) {
 	formulaScreen.setAttribute('data-calculated', true);
-	const result = eval(formulaScreen.textContent)
-	formulaScreen.textContent += '=' + result;
-	display.textContent = result;
+	try {
+		const result = eval(formulaScreen.textContent);
+		formulaScreen.textContent += '=' + result;
+		display.textContent = result;
+	}
+	catch (err) {
+		setAlert('ERROR');
+	}
 }
 
 function removeKey(display, formulaScreen) {
@@ -123,11 +128,10 @@ function removeKey(display, formulaScreen) {
 		display.textContent = expression[1];
 	}
 	else if (display.textContent.length <= 1) {
-		// // If fomula screen
-		// if (formulaScreen.textContent.length <= 1) {
-		// 	clearDisplay(display, formulaScreen);
-		// }
-		if (OPERATORS.includes(formulaScreen.textContent.slice(-1))) {
+		if (formulaScreen.textContent.length <= 1) {
+			clearDisplay(display, formulaScreen);
+		}
+		else if (OPERATORS.includes(formulaScreen.textContent.slice(-1))) {
 			display.textContent = formulaScreen.textContent.slice(-1);
 			formulaScreen.textContent = formulaScreen.textContent.slice(0, formulaScreen.textContent.length - 1);
 		}
@@ -145,4 +149,12 @@ function removeKey(display, formulaScreen) {
 function clearDisplay(display, formulaScreen) {
 	display.textContent = '0';
 	formulaScreen.textContent = '';
+}
+
+function setAlert(text) {
+	const alertScreen = document.getElementById('digital-alert');
+	alertScreen.textContent = text;
+	setTimeout(() => {
+		alertScreen.textContent = 'Made by Muhammad Khan';
+	}, 1000);
 }

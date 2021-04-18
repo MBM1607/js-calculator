@@ -6,18 +6,45 @@
 }
 
 body {
+	height: 100vh;
 	background-color: hsl(202, 96%, 30%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+footer {
+	margin: 2rem auto 0 auto;
+	width: 90%;
+	background-color: hsl(14, 96%, 30%);
+	overflow: hidden;
+}
+
+#digital-alert {
+	color: hsl(229, 96%, 95%);
+	font-size: 1.625rem;
+	line-height: 1.625rem;
+	font-family: 'VT323', monospace;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	animation: blinking 8s cubic-bezier(.12,.8,.74,-0.01) infinite;
+}
+
+@keyframes blinking {
+	0% {
+		transform: translateX(-60%);
+	}
+	100% {
+		transform: translateX(60%);
+	}
 }
 
 #calculator {
 	border: 5px solid hsl(250, 96%, 10%);
 	background-color: hsl(250, 96%, 10%);
 	color: antiquewhite;
-	width: 40ch;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	width: 320px;
 }
 
 .display-screen {
