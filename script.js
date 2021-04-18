@@ -111,8 +111,30 @@ function calculate(display, formulaScreen) {
 }
 
 function removeKey(display, formulaScreen) {
-	if (display.textContent.length <= 1) {
-		clearDisplay(display, formulaScreen)
+	/* If equal result is currently displayed remove that result and show steps in display
+		and formula screen as they would appear before equal. */
+	if (formulaScreen.getAttribute('data-calculated') === 'true') {
+		formulaScreen.setAttribute('data-calculated', false);
+		const expression = formulaScreen.textContent
+			.split('=')[0]
+			.replace(/([/*+-]+)/gi, '$1;')
+			.split(';');
+		formulaScreen.textContent = expression.join('');
+		display.textContent = expression[1];
+	}
+	else if (display.textContent.length <= 1) {
+		// // If fomula screen
+		// if (formulaScreen.textContent.length <= 1) {
+		// 	clearDisplay(display, formulaScreen);
+		// }
+		if (OPERATORS.includes(formulaScreen.textContent.slice(-1))) {
+			display.textContent = formulaScreen.textContent.slice(-1);
+			formulaScreen.textContent = formulaScreen.textContent.slice(0, formulaScreen.textContent.length - 1);
+		}
+		else {
+			display.textContent = '';
+			formulaScreen.textContent = formulaScreen.textContent.slice(0, formulaScreen.textContent.length - 1);
+		}
 	}
 	else {
 		display.textContent = display.textContent.slice(0, display.textContent.length - 1);
